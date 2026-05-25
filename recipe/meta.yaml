@@ -3,7 +3,7 @@
 
 package:
   name: r-spatstat.random
-  version: {{ version|replace("-", "_") }}
+  version: "{{ version|replace("-", "_") }}"
 
 source:
   url:
@@ -24,8 +24,10 @@ build:
 requirements:
   build:
     - cross-r-base {{ r_base }}    # [build_platform != target_platform]
+    - r-matrix                     # [build_platform != target_platform]
     - r-spatstat.data              # [build_platform != target_platform]
     - r-spatstat.geom              # [build_platform != target_platform]
+    - r-spatstat.sparse            # [build_platform != target_platform]
     - r-spatstat.univar            # [build_platform != target_platform]
     - r-spatstat.utils             # [build_platform != target_platform]
     - {{ compiler('c') }}          # [not win]
@@ -41,16 +43,20 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
+    - r-matrix
     - r-spatstat.data >=3.1_9
-    - r-spatstat.geom >=3.7_0
-    - r-spatstat.univar >=3.1_6
-    - r-spatstat.utils >=3.2_1
+    - r-spatstat.geom >=3.8_1
+    - r-spatstat.sparse >=3.2_0
+    - r-spatstat.univar >=3.2_0
+    - r-spatstat.utils >=3.2_3
   run:
     - r-base
+    - r-matrix
     - r-spatstat.data >=3.1_9
-    - r-spatstat.geom >=3.7_0
-    - r-spatstat.univar >=3.1_6
-    - r-spatstat.utils >=3.2_1
+    - r-spatstat.geom >=3.8_1
+    - r-spatstat.sparse >=3.2_0
+    - r-spatstat.univar >=3.2_0
+    - r-spatstat.utils >=3.2_3
 
 test:
   commands:
